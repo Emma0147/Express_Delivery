@@ -8,16 +8,6 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from models.user import User
-from models.shipment import Shipment
-from models.address import Address
-from models.product import Product
-from models.order import Order
-from models.base_model import Base, BaseModel
-
-
-classes = {"User": User, "Shipment": Shipment,
-           "Address": Address, "Product": Product, "Order": Order}
 
 
 class DBStorage:
@@ -39,6 +29,14 @@ class DBStorage:
 
     def all(self, cls=None):
         """query on the current database session"""
+        from models.order import Order
+        from models.address import Address
+        from models.user import User
+        from models.product import Product
+        from models.shipment import Shipment
+        from models.base_model import Base, BaseModel
+        classes = {"User": User, "Shipment": Shipment,
+                   "Address": Address, "Product": Product, "Order": Order}
         new_dict = {}
         for clss in classes:
             if cls is None or cls is classes[clss] or cls is clss:
@@ -63,6 +61,14 @@ class DBStorage:
 
     def reload(self):
         """reloads data from the database"""
+        from models.order import Order
+        from models.address import Address
+        from models.user import User
+        from models.product import Product
+        from models.shipment import Shipment
+        from models.base_model import Base, BaseModel
+        classes = {"User": User, "Shipment": Shipment,
+                   "Address": Address, "Product": Product, "Order": Order}
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
@@ -77,6 +83,14 @@ class DBStorage:
         Returns the object based on the class name and its ID, or
         None if not found
         """
+        from models.order import Order
+        from models.address import Address
+        from models.user import User
+        from models.product import Product
+        from models.shipment import Shipment
+        from models.base_model import Base, BaseModel
+        classes = {"User": User, "Shipment": Shipment,
+                   "Address": Address, "Product": Product, "Order": Order}
         if cls not in classes.values():
             return None
 
@@ -91,6 +105,14 @@ class DBStorage:
         """
         count the number of objects in storage
         """
+        from models.order import Order
+        from models.address import Address
+        from models.user import User
+        from models.product import Product
+        from models.shipment import Shipment
+        from models.base_model import Base, BaseModel
+        classes = {"User": User, "Shipment": Shipment,
+                   "Address": Address, "Product": Product, "Order": Order}
         all_class = classes.values()
 
         if not cls:
