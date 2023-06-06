@@ -14,8 +14,8 @@ class Shipment(BaseModel, Base):
 
     __tablename__ = 'shipments'
     id = Column(Integer, primary_key=True)
-    user_id = Column(String(60), ForeignKey('families.id'), nullable=False)
-    order_id = Column(String(60), ForeignKey('nannies.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    order_id = Column(String(60), ForeignKey('order.id'), nullable=False)
     start_date = Column(DateTime, nullable=False)
     end_date = Column(DateTime, nullable=False)
     tracking_number = Column(String(50), nullable=False)
